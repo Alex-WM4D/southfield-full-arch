@@ -1,0 +1,74 @@
+[
+  {
+    "file": "client/public/images/dr-oleg-preferred_420e0c72.jpg",
+    "width": 500,
+    "height": 700,
+    "bytes": 40656
+  },
+  {
+    "file": "client/public/images/google-g_ecb1f1a4.png",
+    "width": 500,
+    "height": 512,
+    "bytes": 7789
+  },
+  {
+    "file": "client/public/images/logo_849d8385.png",
+    "width": 207,
+    "height": 57,
+    "bytes": 4395
+  },
+  {
+    "file": "client/public/images/mike-frame_10786298.jpg",
+    "width": 1280,
+    "height": 720,
+    "bytes": 105857
+  },
+  {
+    "file": "client/public/images/southfield-full-arch-case-1_0f9f171d.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 276700
+  },
+  {
+    "file": "client/public/images/southfield-full-arch-case-2_13cc51c7.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 225534
+  },
+  {
+    "file": "client/public/images/southfield-full-arch-case-3_850effdd.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 275792
+  },
+  {
+    "file": "client/public/images/southfield-full-arch-case-4_16f755ac.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 315776
+  },
+  {
+    "file": "client/public/images/southfield-full-arch-case-5_14ccd66b.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 280416
+  },
+  {
+    "file": "client/public/images/southfield-location-map_9a5caa63.png",
+    "width": 1441,
+    "height": 1230,
+    "bytes": 565358
+  },
+  {
+    "file": "client/public/images/troy-frame_4c518002.jpg",
+    "width": 1280,
+    "height": 720,
+    "bytes": 162956
+  },
+  {
+    "file": "client/public/images/zirconia-arch-black-studio-960_7694b2ae.webp",
+    "width": 960,
+    "height": 1440,
+    "bytes": 45082
+  }
+]
