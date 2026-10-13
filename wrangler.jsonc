@@ -1,0 +1,17 @@
+{
+  // Cloudflare Pages project config. `pages_build_output_dir` marks this as a
+  // Pages project. `name` must match the Pages project name in Cloudflare.
+  // POST /api/appointment-request is served by functions/api/appointment-request.ts.
+  // MAILGUN_API_KEY is a secret: set it in the Pages dashboard (encrypted), or
+  // in .dev.vars for local testing. Never put it in this file.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "southfield-full-arch",
+  "compatibility_date": "2026-09-01",
+  "pages_build_output_dir": "./dist",
+  "vars": {
+    "MAILGUN_DOMAIN": "100marketers.com",
+    "MAILGUN_API_BASE": "https://api.mailgun.net",
+    "MAILGUN_FROM": "Southfield Family Dental Center <noreply@100marketers.com>",
+    "LEAD_RECIPIENT": "reporting_southfield-family-implant-center@100marketers.com"
+  }
+}

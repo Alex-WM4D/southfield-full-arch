@@ -1,0 +1,3 @@
+# Copy to .dev.vars (git-ignored) for `npm run cf:dev`.
+# Mailgun domain sending key for 100marketers.com. Real emails are sent.
+MAILGUN_API_KEY=

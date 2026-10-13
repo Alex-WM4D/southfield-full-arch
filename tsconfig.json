@@ -1,6 +1,8 @@
 {
   "include": [
     "client/src/**/*",
+    "functions/**/*",
+    "emails/*.d.ts",
     "vite.config.ts",
     "playwright.config.ts"
   ],

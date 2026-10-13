@@ -1,0 +1,173 @@
+<!--
+  APPOINTMENT REQUEST - ADMIN NOTIFICATION
+  ----------------------------------------
+  SEND TO:      LEAD_RECIPIENT (reporting_southfield-family-implant-center@100marketers.com)
+  REPLY TO:     noreply@100marketers.com
+  SUBJECT:      Get on the Horn! A New Patient Wants an Appointment
+  FROM NAME:    Southfield Family Dental Center
+  FROM ADDRESS: noreply@100marketers.com
+
+  Based on the WM4D "Appointment Request Admin Notification" template.
+  {{token}} values are HTML-escaped by functions/api/appointment-request.ts;
+  {{{message_html}}} is pre-escaped with line breaks kept. The template's
+  #54caf2 cyan is replaced with the site's plum (#35113d) and orchid (#8f3d8e).
+  Table layout and inline styles are kept for Outlook.
+-->
+<table style="font-size: 9pt; color: #6b6b6b;" border="0" width="650" cellspacing="0" align="center">
+<tbody>
+<tr>
+<td>
+<table style="padding: 10px 30px 8px; margin: 0px auto;" border="0" cellspacing="0" cellpadding="5" align="center" bgcolor="#e5e5e5">
+<tbody>
+<tr>
+<td style="font-family: Arial, Helvetica, sans-serif; padding: 0px;">
+<p align="center">Heads Up! A New Patient Has Contacted You</p>
+
+<table style="margin: 0px;" border="0" width="588" cellspacing="0" cellpadding="5" align="center" bgcolor="#ffffff">
+<tbody>
+<tr>
+<td align="left" width="70%" style="padding: 12px 10px;"><a href="{{site_url}}"><img src="{{logo_url}}" alt="{{site_name}}" width="207" height="57" style="display: block; border: 0; width: 207px; max-width: 207px; height: auto;" /></a></td>
+<td align="center" bgcolor="#35113d" width="30%">
+<table border="0" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td style="font-size: 10pt; font-weight: bold; color: #ffffff; font-family: Arial, Helvetica, sans-serif;" align="center" height="20">DATE SENT</td>
+</tr>
+<tr>
+<td align="center" height="20"><span style="color: #ffffff; font-size: 16px; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">{{date_mdy}}</span></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td colspan="2">
+<table style="padding: 0px 20px; line-height: 22px;" border="0" cellspacing="5" cellpadding="5" align="center" bgcolor="#ffffff">
+<tbody>
+<tr>
+<td style="color: #8f3d8e;" align="center">
+<p style="margin-top: 0px; margin-bottom: 0px; font-size: 13pt; text-transform: uppercase; padding-top: 15px; font-weight: bold;">NEW PATIENT LEAD-APPOINTMENT REQUEST</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin: 0px;">A new patient lead from your web marketing site wishes to make an appointment for <span style="font-weight: 600; color: #35113d;">{{procedure}}</span> with your office. Please call the patient on the number provided, text the patient through Google Voice or another modality and send the patient an email response. We encourage you to continue trying to get in touch with the patient repeatedly until you have met with success. Remember, YOU are the key to the success of the marketing program.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="margin-top: 0px; margin-bottom: 0px;">Here is the page the patient landed on before contacting you:
+<a href="{{landing_page}}" style="color: #8f3d8e;">{{landing_page}}</a>.</p>
+</td>
+</tr>
+<tr align="center">
+<td>
+<table style="padding-bottom: 15px; border-radius: 5px;" width="100%" cellspacing="0" cellpadding="10" align="center" bgcolor="#f8f4ee">
+<tbody>
+<tr>
+<td style="padding: 15px 0px 0px; margin: 0px;" align="center" width="100%">
+<h5 style="font-size: 10pt; margin-top: 0px; margin-bottom: 0px; color: #8f3d8e; padding: 0px;">PATIENT'S INFORMATION</h5>
+</td>
+</tr>
+<tr>
+<td style="padding: 0px 15px;">
+<table width="100%" cellspacing="0" cellpadding="10" align="center" bgcolor="#f8f4ee">
+<tbody>
+<tr>
+<td>
+<table style="color: #7e7e7e; font-size: 10pt;" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td width="150" valign="top">Name:</td>
+<th align="left" style="color: #211c20;">{{full_name}}</th>
+</tr>
+<tr>
+<td width="150" valign="top">Phone:</td>
+<th align="left" style="color: #211c20;"><a href="tel:{{phone_href}}" style="color: #211c20;">{{phone}}</a></th>
+</tr>
+<tr>
+<td width="150" valign="top">Email:</td>
+<th align="left" style="color: #211c20;"><a href="mailto:{{email}}" style="color: #211c20;">{{email}}</a></th>
+</tr>
+<tr>
+<td width="150" valign="top">A2P CONSENT (appointment texts):</td>
+<th align="left" valign="top" style="color: #211c20;">{{appointment_sms_consent}}</th>
+</tr>
+<tr>
+<td width="150" valign="top">A2P CONSENT (promotional texts):</td>
+<th align="left" valign="top" style="color: #211c20;">{{marketing_sms_consent}}</th>
+</tr>
+<tr>
+<td width="150" valign="top">Location:</td>
+<th align="left" valign="top" style="color: #211c20;">{{location}}</th>
+</tr>
+<tr>
+<td width="150" valign="top">Message:</td>
+<th align="left" valign="top" style="color: #211c20; font-weight: normal;">{{{message_html}}}</th>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding: 0px 10px; margin: 0px;">Procedure:</td>
+</tr>
+<tr>
+<td style="font-weight: bold; padding: 0px 10px;" align="left"><a href="{{landing_page}}" style="color: #8f3d8e;">{{procedure}}</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr align="center">
+<td style="padding: 0px;">
+<table style="padding: 0px; line-height: normal;" width="350" cellspacing="0" cellpadding="5" align="center">
+<tbody>
+<tr>
+<td style="text-align: center;"><a style="text-decoration: none; display: inline-block; cursor: pointer; border-radius: 5px; background-color: #8f3d8e; padding: 10px 16px;" href="mailto:{{email}}"><span style="color: #ffffff; font-size: 10pt; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">EMAIL PATIENT</span></a></td>
+<td style="text-align: center;"><a style="text-decoration: none; display: inline-block; cursor: pointer; border-radius: 5px; background-color: #35113d; padding: 10px 16px;" href="tel:{{phone_href}}"><span style="color: #ffffff; font-size: 10pt; font-weight: 600; font-family: Arial, Helvetica, sans-serif;">CALL PATIENT</span></a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td style="font-size: 8pt; line-height: 16px; color: #949494; padding: 0px 10px 10px;">SMS consent record: disclosure version {{consent_version}}, submitted {{submitted_at}} from {{landing_page}}. Request ID {{request_id}}.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr align="center" bgcolor="#35113d">
+<td colspan="2">
+<table style="padding: 4px;" width="80%" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td style="font-size: 10pt; font-weight: bold; color: #ffffff; text-transform: uppercase; text-align: center; font-family: Arial, Helvetica, sans-serif;">GOOD LUCK! GO GET 'EM! REMEMBER: PERSISTENCE IS THE KEY.</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr align="center" bgcolor="#e5e5e5">
+<td style="font-size: 8pt; line-height: 18px; padding: 10px 48px; color: #949494;" colspan="2" align="center">
+<p style="margin-top: 0px; margin-bottom: 0px;">The intended recipient of this email is {{site_name}} and is a service of Web Marketing For Dentists. If you have received this email by accident, please notify us by calling <a href="tel:+17862641767" style="color: #949494;">(786) 264-1767</a>.</p>
+<p style="margin-top: 0px; margin-bottom: 0px;">&copy; Copyright {{year}} Web Marketing For Dentists. All rights reserved.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>

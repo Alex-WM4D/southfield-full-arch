@@ -23,9 +23,18 @@ npm run build
 npm run preview
 ```
 
-Deploy the **contents of `dist/`** to the root of a domain on static hosting. The build creates entry files for `/terms-of-service/`, `/privacy-policy/`, `/disclaimer/`, and `/404/`. `_redirects` is supplied for hosts that support SPA fallback rules. If the host uses another format, configure unknown paths to serve `index.html`.
+`npm run preview` serves the static site only. To run the appointment endpoint too, copy `.dev.vars.example` to `.dev.vars`, add a Mailgun sending key, and run `npm run cf:dev` (http://localhost:8788). This sends real emails.
 
-This export uses root-relative paths. Deploy at a domain root, not a GitHub Pages project subdirectory such as `/southfield-full-arch/`, without first configuring the router base and asset paths. GitHub stores the source; pushing code does **not** publish a website. No automatic deployment is configured here.
+### Deploy to Cloudflare Pages
+
+Deploy as a **Cloudflare Pages** project (not static-only hosting), because `functions/api/appointment-request.ts` sends the lead emails.
+
+- Build command `npm run build`, output directory `dist`, and environment variable `NODE_VERSION=22`.
+- `wrangler.jsonc` holds the non-secret settings. Its `name` must match the Pages project name.
+- Add `MAILGUN_API_KEY` as an **encrypted** Pages variable for Production and Preview. Use a Mailgun **domain sending key** for `100marketers.com`, not the account-wide key or an SMTP password.
+- After deploy, `GET /api/appointment-request` reports which settings are present (never their values). Then submit a test lead and confirm both messages under Mailgun → Logs.
+
+The build creates entry files for `/terms-of-service/`, `/privacy-policy/`, `/disclaimer/`, and `/404/`. `_redirects` supplies the SPA fallback. This export uses root-relative paths, so deploy at a domain root. GitHub stores the source; pushing code does **not** publish a website until the Pages project is connected.
 
 ## Where to edit
 
@@ -34,12 +43,16 @@ This export uses root-relative paths. Deploy at a domain root, not a GitHub Page
 | Headlines, prices, included treatment, office hours, FAQs, patient quotes | `client/src/pages/Home.tsx` |
 | Colors, fonts, spacing, responsive styling | `client/src/index.css` |
 | Google Fonts and search/social metadata | `client/index.html` |
+| GA4 and WhatConverts tracking tags | `client/index.html` |
+| Phone number (DNI swap number) | `client/src/lib/phone.ts` |
 | Appointment pop-up layout, fallback scheduler | `client/src/components/AppointmentRequestPopup.tsx` |
 | Appointment fields, validation, optional SMS consent | `client/src/components/AppointmentRequestForm.tsx` |
 | Terms of Service and Privacy Policy | `client/src/pages/LegalPages.tsx` |
 | Bundled images | `client/public/images/` |
+| Lead notification emails (admin and patient) | `emails/*.html` |
+| Lead endpoint, recipients, sender | `functions/api/appointment-request.ts`, `wrangler.jsonc` |
 
-When updating the practice phone number, check `Home.tsx`, both appointment components, and `LegalPages.tsx`. Prices, hours, offers, and policies should stay consistent across the page. For image changes, preserve the original before/after labeling, proportions, and patient consent. Confirm restoration material before adding material-specific case claims.
+The phone number lives only in `client/src/lib/phone.ts`. It is the WhatConverts DNI swap number, (248) 215-2058; change it only if the swap number in WhatConverts changes. Prices, hours, offers, and policies should stay consistent across the page. For image changes, preserve the original before/after labeling, proportions, and patient consent. Confirm restoration material before adding material-specific case claims.
 
 ## Regular updates
 
@@ -55,23 +68,33 @@ git push origin main
 
 For team work, use a feature branch and pull request. CI checks types, builds, and tests the mobile/desktop flow on pushes and pull requests. This repository is an export, **not an automatic two-way Manus sync**. Changes here will not update the original Manus preview unless deliberately transferred back, and later Manus edits will not automatically appear here.
 
-## Appointment form: delivery still pending
+## Appointment form and lead notifications
 
-The pop-up has Full Name, Phone, Email, and Message. Full Name, Phone, and Email are required. Message is optional. Appointment and promotional SMS consent are independent, optional, and unchecked by default.
+The pop-up has Full Name, Phone, Email, and Message. Full Name, Phone, and Email are required. Message is optional. Appointment and promotional SMS consent are independent, optional, and unchecked by default. A request never requires SMS consent.
 
-**The form does not currently send requests or notifications.** It explains that online submission is not active and never falsely reports success. The main phone and existing TrueLark scheduling link remain available.
+The form posts JSON to `POST /api/appointment-request` (`functions/api/appointment-request.ts`). The function validates the fields, drops honeypot (`website`) submissions silently, and sends two emails through Mailgun's HTTPS API. They are built from the WM4D appointment-request templates:
 
-To activate it, an approved server-side CRM/form adapter must be passed to `AppointmentRequestForm` through its `submitRequest` prop. The adapter must return a confirmed `{ requestId }`, preserve separate consent choices and exact disclosure/version, and securely retain the relevant audit records. Do not put a secret CRM API key in React code or a `VITE_` environment variable. Server-only notifications should go to:
+| Email | To | Subject | From / Reply-To |
+| --- | --- | --- | --- |
+| Admin notification (`emails/admin-notification.html`) | `LEAD_RECIPIENT`: `reporting_southfield-family-implant-center@100marketers.com` | Get on the Horn! A New Patient Wants an Appointment | Southfield Family Dental Center `<noreply@100marketers.com>` / `noreply@100marketers.com` |
+| Patient confirmation (`emails/patient-confirmation.html`) | The address typed in the form | Confirmation of Your Appointment Request With Southfield Family Dental Center | Same |
 
-- Southfield.om@guardiandentistry.com
-- christine@captivizemarketing.com
-- alex@wm4d.com
+The visitor sees success only after Mailgun accepts the admin notification. If that fails, the form keeps the entries and shows the phone number. The patient confirmation is sent after the response, so a bad patient address never loses a lead. Admin notifications go **only** to the reporting inbox. Notifying the practice and team is handled outside this site, so do not add recipients here.
 
-No notification routing or messaging provider is connected in this export. A2P registration/approval, opt-in records, and STOP/HELP handling must be verified with the selected provider before sending messages. A request must remain possible without SMS consent.
+The admin email records each SMS choice separately, plus the consent disclosure version, submission time, landing URL (including UTM/gclid), and a request ID. The consent text and version live in `client/src/lib/appointment-request.ts`, shared by the form and the function. **Bump `SMS_CONSENT_VERSION` whenever consent wording changes.** The patient confirmation never includes visitor-typed text, so the form cannot be used to send arbitrary content from the shared `100marketers.com` domain.
+
+A2P registration, opt-in records, and STOP/HELP handling must be verified with the texting provider before sending messages.
 
 ## Analytics and external services
 
-Managed preview instrumentation and its Umami script are removed. Privacy-safe `southfield:analytics` events remain available for an approved analytics integration; no analytics endpoint is installed in this export. Never record form values in analytics or session replay.
+`client/index.html` loads two tags on every page, including the generated policy entries:
+
+- **GA4** (`G-50EEPYREL4`) via gtag.js.
+- **WhatConverts** (profile `177101`) for call tracking, dynamic number insertion, and form tracking. It replaces the swap number (248) 215-2058 in page text and `tel:` links with the visitor's tracking number. Add the `no-swap` class to any element that must keep the original number.
+
+WhatConverts form tracking identifies the appointment form by `id="appointment-request-form"` (also `name="appointment-request-form"`). Keep that ID if the form is edited. The form only mounts when the pop-up opens; WhatConverts re-scans for forms on click and keypress, so it still binds.
+
+Privacy-safe `southfield:analytics` events remain available but are not yet forwarded to GA4. Browser tests block both tracking hosts so CI never sends test traffic or synthetic leads.
 
 Images are bundled locally and do not need Manus storage. Google Fonts, Google Drive testimonial playback, TrueLark scheduling, and map directions still require internet access. Videos load only when opened. The visual locator map itself is bundled locally.
 

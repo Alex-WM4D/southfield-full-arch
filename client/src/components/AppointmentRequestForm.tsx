@@ -3,26 +3,13 @@ import { Link } from "wouter";
 import { ArrowRight, CircleCheck, Info, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
-export const SMS_CONSENT_VERSION = "2026-10-09-v1";
-export const APPOINTMENT_SMS_CONSENT =
-  "I agree to receive text messages from Southfield Family Dental Center about my appointment request, scheduling, confirmations, and reminders at the phone number provided. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help.";
-export const MARKETING_SMS_CONSENT =
-  "I agree to receive recurring promotional text messages from Southfield Family Dental Center about dental services and special offers at the phone number provided, including messages sent using automated technology. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help.";
-
-export interface AppointmentRequest {
-  fullName: string;
-  phone: string;
-  email: string;
-  message: string;
-  appointmentSmsConsent: boolean;
-  marketingSmsConsent: boolean;
-  consentVersion: string;
-  appointmentConsentText: string;
-  marketingConsentText: string;
-  sourcePath: string;
-  clientSubmittedAt: string;
-}
+import { PHONE_DISPLAY } from "@/lib/phone";
+import {
+  APPOINTMENT_SMS_CONSENT,
+  MARKETING_SMS_CONSENT,
+  SMS_CONSENT_VERSION,
+  type AppointmentRequest,
+} from "@/lib/appointment-request";
 
 interface FormProps {
   // Supply an approved server/CRM adapter. A missing adapter never fakes delivery.
@@ -61,7 +48,7 @@ export default function AppointmentRequestForm({ submitRequest }: FormProps) {
     if (!submitRequest) {
       setStatus("error");
       setNotice(
-        "No request has been sent. Online submission is not active yet. Please call (248) 569-6304 or use the practice’s online scheduling link below."
+        `No request has been sent. Online submission is not active yet. Please call ${PHONE_DISPLAY} or use the practice’s online scheduling link below.`
       );
       return;
     }
@@ -78,8 +65,9 @@ export default function AppointmentRequestForm({ submitRequest }: FormProps) {
       consentVersion: SMS_CONSENT_VERSION,
       appointmentConsentText: APPOINTMENT_SMS_CONSENT,
       marketingConsentText: MARKETING_SMS_CONSENT,
-      sourcePath: window.location.pathname,
+      sourcePath: window.location.pathname + window.location.search,
       clientSubmittedAt: new Date().toISOString(),
+      website: String(data.get("website") ?? ""),
     };
     setStatus("pending");
     setNotice("");
@@ -96,7 +84,7 @@ export default function AppointmentRequestForm({ submitRequest }: FormProps) {
     } catch {
       setStatus("error");
       setNotice(
-        "We could not confirm delivery of your request. Please call (248) 569-6304 or use the online scheduling link below. Your form entries have been kept so you can try again."
+        `We could not confirm delivery of your request. Please call ${PHONE_DISPLAY} or use the online scheduling link below. Your form entries have been kept so you can try again.`
       );
     }
   }
@@ -106,6 +94,9 @@ export default function AppointmentRequestForm({ submitRequest }: FormProps) {
 
   return (
     <form
+      // Stable identifiers for WhatConverts form tracking and GA4 form events.
+      id="appointment-request-form"
+      name="appointment-request-form"
       aria-label="Request an Appointment"
       onSubmit={handleSubmit}
       className="manus-no-record mt-6 space-y-5"
@@ -126,6 +117,20 @@ export default function AppointmentRequestForm({ submitRequest }: FormProps) {
         Full Name, Phone, and Email are required. Message and both text-message
         choices are optional.
       </p>
+      {/* Honeypot for bots. Off-screen, unlabeled for assistive tech, and skipped by Tab. */}
+      <div
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-px w-px overflow-hidden"
+      >
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          data-wc-ignore="true"
+          defaultValue=""
+        />
+      </div>
       <div className="space-y-2">
         <label
           htmlFor="appointment-full-name"
@@ -253,7 +258,7 @@ export default function AppointmentRequestForm({ submitRequest }: FormProps) {
         <p className="border-t border-plum/10 pt-3 text-xs leading-5 text-ink/75">
           Neither checkbox is required to request an appointment or purchase
           services. Leaving both unchecked does not enroll you in text messages.
-          For assistance, call (248) 569-6304.
+          For assistance, call {PHONE_DISPLAY}.
         </p>
       </fieldset>
       <p className="text-xs leading-6 text-ink/70">

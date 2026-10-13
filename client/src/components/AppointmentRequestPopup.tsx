@@ -15,6 +15,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import AppointmentRequestForm from "@/components/AppointmentRequestForm";
+import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/phone";
+import { submitAppointmentRequest } from "@/lib/appointment-request";
 
 const PopupContext = createContext<
   ((trigger: HTMLButtonElement) => void) | null
@@ -115,17 +117,17 @@ export default function AppointmentRequestPopup({
             data-appointment-popup-scroll
             className="min-h-0 overflow-y-auto overscroll-contain px-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))] sm:px-7"
           >
-            <AppointmentRequestForm />
+            <AppointmentRequestForm submitRequest={submitAppointmentRequest} />
             <div className="mt-5 border-t border-plum/10 pt-4">
               <p className="mb-3 text-center text-xs text-ink/65">
                 Prefer to speak with the team or use existing online scheduling?
               </p>
               <a
-                href="tel:+12485696304"
+                href={PHONE_HREF}
                 onClick={onCall}
                 className="button-primary min-h-12 w-full"
               >
-                <Phone className="h-4 w-4" aria-hidden="true" /> (248) 569-6304
+                <Phone className="h-4 w-4" aria-hidden="true" /> {PHONE_DISPLAY}
               </a>
               <a
                 href="https://truelark.com/bookonline/#/location?businessId=85431"

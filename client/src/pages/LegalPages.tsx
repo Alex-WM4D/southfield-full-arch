@@ -1,11 +1,11 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { ArrowLeft, ArrowUpRight, Phone } from "lucide-react";
 import { Link } from "wouter";
+import { PHONE_DISPLAY as PHONE, PHONE_HREF } from "@/lib/phone";
 
 const PRACTICE = "Southfield Family Dental Center";
-const PHONE = "(248) 569-6304";
 const EMAIL = "Southfield.om@guardiandentistry.com";
-const UPDATED = "October 9, 2026";
+const UPDATED = "October 12, 2026";
 
 interface PolicySection {
   id: string;
@@ -20,7 +20,7 @@ const contact = (
       Road, Southfield, MI 48075.
     </p>
     <p>
-      Call <a href="tel:+12485696304">{PHONE}</a> or email{" "}
+      Call <a href={PHONE_HREF}>{PHONE}</a> or email{" "}
       <a href={`mailto:${EMAIL}`}>{EMAIL}</a>. Please do not include sensitive
       health information in ordinary email or a general appointment inquiry.
     </p>
@@ -162,7 +162,7 @@ const termsSections: PolicySection[] = [
           You may receive a confirmation of your opt-out. To re-enroll, follow
           the program’s instructions and provide a new opt-in.{" "}
           <strong>Reply HELP for help</strong> or contact the office at{" "}
-          <a href="tel:+12485696304">{PHONE}</a> or{" "}
+          <a href={PHONE_HREF}>{PHONE}</a> or{" "}
           <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
         </p>
         <p>
@@ -227,14 +227,16 @@ const privacySections: PolicySection[] = [
           entries under its own policies.
         </p>
         <p>
-          Until the form’s submission service is connected, it displays an
-          unavailability notice and does not transmit your form entries. Form
-          entries are not saved to browser storage or included in analytics.
-          When enabled, the submission service must retain the separate consent
-          choices, exact disclosure version, date and source of opt-in, and
-          appropriate audit records. These records are used to honor and
-          document your communication preferences, not to assume consent you did
-          not give.
+          When you submit the appointment form, your entries are sent by email
+          to the practice’s marketing service provider, which shares them with
+          the practice so the team can contact you, and a confirmation is
+          emailed to the address you provide. Each request records your separate
+          text-message choices, the disclosure version shown, and the date and
+          page of submission. These records are used to honor and document your
+          communication preferences, not to assume consent you did not give.
+          Form entries are not saved to browser storage. Our call and lead
+          tracking provider may also receive form entries to attribute the
+          inquiry to the advertising source that led to it.
         </p>
         <p>
           Hosting and analytics services may process technical information such
@@ -281,11 +283,15 @@ const privacySections: PolicySection[] = [
     content: (
       <>
         <p>
-          This site uses Umami analytics when its configured analytics service
-          is enabled. Browser storage may also be used for site preferences. The
-          current landing page does not contain live chat. Additional
-          advertising or remarketing tools, if introduced, should be reflected
-          in an updated policy and any required consent controls.
+          This site uses Google Analytics to measure site traffic and campaign
+          performance, and WhatConverts to attribute phone calls and inquiries
+          to the advertising source that led to them. To do this, the site may
+          display a tracking phone number that forwards to the practice, and
+          these services may set cookies or use browser storage. Browser storage
+          may also be used for site preferences. The current landing page does
+          not contain live chat. Additional advertising or remarketing tools, if
+          introduced, should be reflected in an updated policy and any required
+          consent controls.
         </p>
         <p>
           Google Fonts supplies the website fonts. Opening a testimonial loads a
@@ -458,7 +464,7 @@ function PolicyPage({
             />
           </Link>
           <a
-            href="tel:+12485696304"
+            href={PHONE_HREF}
             className="inline-flex min-h-11 items-center gap-2 rounded-full bg-plum px-4 py-2 text-sm font-bold text-white transition hover:bg-orchid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orchid"
           >
             <Phone className="h-4 w-4" aria-hidden="true" /> {PHONE}

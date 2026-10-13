@@ -12,3 +12,7 @@ playwright-report/
 test-results/
 .DS_Store
 .vscode/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.wrangler/

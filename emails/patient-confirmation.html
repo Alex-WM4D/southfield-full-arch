@@ -1,0 +1,68 @@
+<!--
+  APPOINTMENT REQUEST - PATIENT CONFIRMATION
+  ------------------------------------------
+  SEND TO:      the address entered in the form's Email field
+  REPLY TO:     noreply@100marketers.com
+  SUBJECT:      Confirmation of Your Appointment Request With Southfield Family Dental Center
+  FROM NAME:    Southfield Family Dental Center
+  FROM ADDRESS: noreply@100marketers.com
+
+  Based on the WM4D "Appointment Request Patient Notification" template.
+  {{token}} values are HTML-escaped by functions/api/appointment-request.ts.
+  This email goes to whatever address is typed into the form, so it must
+  never include visitor-entered text (name, message): that would let anyone
+  use the form to send their own content from the shared 100marketers.com domain.
+-->
+<table style="font-size: 9pt; margin: 0; color: #6b6b6b;" border="0" width="100%" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<table style="padding: 10px 30px 30px 30px; margin: 0px auto;" border="0" cellspacing="0" cellpadding="5" align="center" bgcolor="#e5e5e5">
+<tbody>
+<tr>
+<td style="font-family: Arial, Helvetica, sans-serif; font-size: 9pt;">
+<p align="center">Confirmation of Your Appointment Request With {{site_name}}</p>
+
+<table style="border-bottom: 10px solid #8f3d8e;" border="0" width="580" cellspacing="0" cellpadding="5" align="center" bgcolor="#ffffff">
+<tbody>
+<tr>
+<td align="center" width="75%">
+<p style="text-transform: uppercase; padding: 0px 40px; font-size: 13pt; font-weight: bold; color: #8f3d8e; mso-line-height-rule: exactly; line-height: 18pt;">Confirmation of Your Appointment Request With {{site_name}}</p>
+</td>
+<td bgcolor="#35113d" width="25%">
+<table border="0" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td style="color: #ffffff; font-weight: bold; font-size: 10pt; font-family: Arial, Helvetica, sans-serif;" align="center" height="20">DATE SENT</td>
+</tr>
+<tr>
+<td style="color: #ffffff; font-weight: bold; font-size: 12pt; font-family: Arial, Helvetica, sans-serif;" align="center" height="20">{{date_mdy}}</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table style="padding: 0px 20px; mso-line-height-rule: exactly; line-height: 22px;" border="0" cellspacing="5" cellpadding="5" align="center" bgcolor="#ffffff">
+<tbody>
+<tr>
+<td>Thank you for visiting the website of <span style="color: #8f3d8e;">{{site_name}}</span> at <a href="{{site_url}}" style="color: #8f3d8e;">{{site_url_display}}</a>. We are happy that you are interested in completing {{procedure}} with our practice. One of our staff members will be in touch with you shortly to make an appointment at a convenient time for you.</td>
+</tr>
+<tr>
+<td>If you wish to reach out to us by phone, please call us: <span style="color: #8f3d8e;"><a style="color: #8f3d8e;" href="tel:{{site_phone_href}}">{{site_phone}}</a></span></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>

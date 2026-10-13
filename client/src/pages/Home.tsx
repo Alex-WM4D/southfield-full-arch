@@ -26,9 +26,8 @@ import { Link } from "wouter";
 import AppointmentRequestPopup, {
   AppointmentPopupTrigger,
 } from "@/components/AppointmentRequestPopup";
+import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/phone";
 
-const PHONE_DISPLAY = "(248) 569-6304";
-const PHONE_HREF = "tel:+12485696304";
 const DIRECTIONS_URL = "https://maps.app.goo.gl/ATaUCHHLT3gZgNn9A";
 const heroSummary =
   "Our $15,000 arch uses PMMA acrylic, which can wear over time and may need repair or replacement. For $3,000 more, zirconia resists chipping, staining, and odor, so it's built to be your permanent smile.";
