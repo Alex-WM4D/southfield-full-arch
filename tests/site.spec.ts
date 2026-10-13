@@ -159,10 +159,23 @@ test("a failed delivery keeps entries and points to the phone", async ({
   );
 });
 
-test("GA4 and WhatConverts tags ship on every entry page", async ({ page }) => {
+test("noindex, GA4 and WhatConverts ship on every entry page", async ({
+  page,
+}) => {
   await page.route(TRACKING_HOSTS, route => route.abort());
-  for (const path of ["/", "/privacy-policy/", "/terms-of-service/"]) {
+  for (const path of [
+    "/",
+    "/privacy-policy/",
+    "/terms-of-service/",
+    "/disclaimer/",
+    "/404/",
+    "/no-such-page/",
+  ]) {
     await page.goto(path);
+    await expect(page.locator('head meta[name="robots"]')).toHaveAttribute(
+      "content",
+      "noindex, nofollow"
+    );
     await expect(
       page.locator(
         'head script[src="https://www.googletagmanager.com/gtag/js?id=G-50EEPYREL4"]'

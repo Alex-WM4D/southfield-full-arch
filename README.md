@@ -29,12 +29,12 @@ npm run preview
 
 Deploy as a **Cloudflare Pages** project (not static-only hosting), because `functions/api/appointment-request.ts` sends the lead emails.
 
-- Build command `npm run build`, output directory `dist`, and environment variable `NODE_VERSION=22`.
+- Framework preset None, build command `npm run build`, output directory `dist`. Node 22 is pinned by `.node-version`.
 - `wrangler.jsonc` holds the non-secret settings. Its `name` must match the Pages project name.
 - Add `MAILGUN_API_KEY` as an **encrypted** Pages variable for Production and Preview. Use a Mailgun **domain sending key** for `100marketers.com`, not the account-wide key or an SMTP password.
 - After deploy, `GET /api/appointment-request` reports which settings are present (never their values). Then submit a test lead and confirm both messages under Mailgun → Logs.
 
-The build creates entry files for `/terms-of-service/`, `/privacy-policy/`, `/disclaimer/`, and `/404/`. `_redirects` supplies the SPA fallback. This export uses root-relative paths, so deploy at a domain root. GitHub stores the source; pushing code does **not** publish a website until the Pages project is connected.
+The build creates entry files for `/terms-of-service/`, `/privacy-policy/`, `/disclaimer/`, and `/404/`. Every route has a real file, and unknown paths get `404.html` (the app's Not Found page) with a 404 status, so no `_redirects` SPA rule is needed. Cloudflare ignores `/* /index.html 200` as an infinite loop. This export uses root-relative paths, so deploy at a domain root. GitHub stores the source; pushing code does **not** publish a website until the Pages project is connected.
 
 ## Where to edit
 
