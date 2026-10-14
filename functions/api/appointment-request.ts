@@ -38,7 +38,7 @@ const PROCEDURE = "a free full-arch dental implant consultation";
 const TIME_ZONE = "America/Detroit";
 const LOGO_PATH = "/images/logo_849d8385.png";
 const DEFAULT_LEAD_RECIPIENT =
-  "reporting_southfield-family-implant-center@100marketers.com";
+  "reporting_southfield-mi-dentist@100marketers.com";
 const DEFAULT_FROM = `${SITE_NAME} <noreply@100marketers.com>`;
 const REPLY_TO = "noreply@100marketers.com";
 const ADMIN_SUBJECT = "Get on the Horn! A New Patient Wants an Appointment";

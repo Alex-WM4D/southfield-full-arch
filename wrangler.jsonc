@@ -12,6 +12,6 @@
     "MAILGUN_DOMAIN": "100marketers.com",
     "MAILGUN_API_BASE": "https://api.mailgun.net",
     "MAILGUN_FROM": "Southfield Family Dental Center <noreply@100marketers.com>",
-    "LEAD_RECIPIENT": "reporting_southfield-family-implant-center@100marketers.com"
+    "LEAD_RECIPIENT": "reporting_southfield-mi-dentist@100marketers.com"
   }
 }

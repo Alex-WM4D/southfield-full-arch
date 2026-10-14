@@ -76,7 +76,7 @@ The form posts JSON to `POST /api/appointment-request` (`functions/api/appointme
 
 | Email | To | Subject | From / Reply-To |
 | --- | --- | --- | --- |
-| Admin notification (`emails/admin-notification.html`) | `LEAD_RECIPIENT`: `reporting_southfield-family-implant-center@100marketers.com` | Get on the Horn! A New Patient Wants an Appointment | Southfield Family Dental Center `<noreply@100marketers.com>` / `noreply@100marketers.com` |
+| Admin notification (`emails/admin-notification.html`) | `LEAD_RECIPIENT`: `reporting_southfield-mi-dentist@100marketers.com` | Get on the Horn! A New Patient Wants an Appointment | Southfield Family Dental Center `<noreply@100marketers.com>` / `noreply@100marketers.com` |
 | Patient confirmation (`emails/patient-confirmation.html`) | The address typed in the form | Confirmation of Your Appointment Request With Southfield Family Dental Center | Same |
 
 The visitor sees success only after Mailgun accepts the admin notification. If that fails, the form keeps the entries and shows the phone number. The patient confirmation is sent after the response, so a bad patient address never loses a lead. Admin notifications go **only** to the reporting inbox. Notifying the practice and team is handled outside this site, so do not add recipients here.
