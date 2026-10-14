@@ -661,6 +661,16 @@ export default function Home() {
     fileId: string;
   } | null>(null);
 
+  // The page renders client-side, so the browser's native jump to a URL
+  // fragment (e.g. /#verified-example from an ad or email) can miss.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ block: "start", behavior: "instant" });
+  }, []);
+
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) setCaseGalleryPaused(true);
@@ -1993,7 +2003,10 @@ export default function Home() {
           {/* ZIP structure: financing copy left + terms card right */}
           <section id="financing" className="section-space bg-cream">
             <div className="container">
-              <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-16">
+              <div
+                id="verified-example"
+                className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-16"
+              >
                 <div>
                   <Kicker>Paying for it</Kicker>
                   <SectionTitle>

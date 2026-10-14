@@ -215,3 +215,19 @@ test("patient gallery retains manual selection", async ({ page }) => {
   await secondCase.click();
   await expect(secondCase).toHaveAttribute("aria-pressed", "true");
 });
+
+test("#verified-example deep link lands on the financing example", async ({
+  page,
+}) => {
+  await page.route(TRACKING_HOSTS, route => route.abort());
+  await page.goto("/#verified-example");
+  const example = page.locator("#verified-example");
+  await expect(example).toContainText("A real example, not a teaser payment.");
+  await expect(example.getByText("$206.01")).toBeInViewport();
+  const heading = page.locator("#verified-example h2");
+  await expect(heading).toBeInViewport();
+  // Not tucked under the sticky header.
+  const headerBox = (await page.locator("header").first().boundingBox())!;
+  const headingBox = (await heading.boundingBox())!;
+  expect(headingBox.y).toBeGreaterThanOrEqual(headerBox.y + headerBox.height);
+});
