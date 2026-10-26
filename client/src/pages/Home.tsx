@@ -918,9 +918,6 @@ export default function Home() {
                     className="block h-auto w-full object-contain transition duration-200 group-hover:brightness-105"
                   />
                 </button>
-                <p className="px-1 text-[10px] leading-4 text-ink/50">
-                  Individual patient experiences and results vary.
-                </p>
                 <div className="rounded-[1.5rem] border border-plum/10 bg-white p-6 shadow-[0_18px_50px_rgba(53,17,61,0.07)]">
                   <Kicker tone="muted">What {PMMA_PRICE} covers</Kicker>
                   <div className="mt-4 space-y-3">
