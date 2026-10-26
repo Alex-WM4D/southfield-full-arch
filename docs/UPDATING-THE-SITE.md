@@ -4,7 +4,7 @@ This guide is for routine copy, asset, and layout updates to the portable Southf
 
 Repository: `https://github.com/Alex-WM4D/southfield-full-arch-v2`. Clone it into a local folder named `southfield-full-arch-v2`. GitHub stores the source; a hosting connection is required to publish updates.
 
-The export contains 24 frontend source files and 16 media assets (14 images and 2 videos). `docs/asset-manifest.json` is the inventory for the bundled media.
+The export contains 25 frontend source files (including the shared offer-pricing helper) and 16 media assets (14 images and 2 videos). `docs/asset-manifest.json` is the inventory for the bundled media.
 
 ## Before editing
 
@@ -17,7 +17,8 @@ The export contains 24 frontend source files and 16 media assets (14 images and 
 
 | Need | Edit here | Notes |
 | --- | --- | --- |
-| Hero headline, current offer, inclusions, material comparison, approved claims, FAQs, quotes, gallery, office hours, and links | `client/src/pages/Home.tsx` | The current headline is “Restore Your Confidence With Dental Implants.” Keep the $15,000 PMMA, $18,000 final-zirconia, and $3,000 upgrade wording consistent. |
+| Hero headline, current offer copy, inclusions, material comparison, approved claims, FAQs, quotes, gallery, office hours, and links | `client/src/pages/Home.tsx` | The current headline is “Restore Your Confidence With Dental Implants.” Keep the shared formatted prices consistent. |
+| Offer amounts and formatted prices | `client/src/lib/offerPricing.ts` | Update only `PMMA_PRICE_AMOUNT` and `ZIRCONIA_PRICE_AMOUNT`; the formatted prices and computed upgrade gap update automatically. |
 | Shared campaign constants | `client/src/pages/Home.tsx` | Review `OFFICE_HOURS`, `pricePositions`, `doctorAuthorityStats`, and `faqs` together when changing related content. |
 | Dr. Oleg authority metrics | `client/src/pages/Home.tsx` plus `client/src/components/CountUpNumber.tsx` | Current approved figures include 26+ years and 1,000+ implants placed. The numbers animate from zero when the panel scrolls into view; update the source figure and its label together. |
 | Weekly promotion deadline | `client/src/components/WeeklyPromotionCountdown.tsx` and `client/src/lib/promotionTime.ts` | The shared rule is the next Sunday at 11:59 PM Eastern (`America/Detroit`). Do not replace it with a visitor-local hardcoded date. |
@@ -32,7 +33,7 @@ The export contains 24 frontend source files and 16 media assets (14 images and 
 
 ## Routine content checklist
 
-- [ ] Confirm all prices are still per arch and still approved: $15,000 PMMA, $18,000 final zirconia, and $3,000 more for final zirconia.
+- [ ] Confirm all prices are still per arch and still approved: $14,990 PMMA, $17,990 final zirconia, and $3,000 more for final zirconia.
 - [ ] Keep included-care, warranty, financing, and sedation wording qualified and consistent across the hero, comparison cards, FAQs, and inclusions.
 - [ ] Treat the 26+ years and 1,000+ implants figures as approved claims. Confirm the source/date before changing them; do not add clinical conclusions.
 - [ ] Confirm the weekly promotion still ends Sunday at 11:59 PM Eastern. If the campaign rule changes, update the shared time helper and its display together.
@@ -40,6 +41,24 @@ The export contains 24 frontend source files and 16 media assets (14 images and 
 - [ ] Keep Troy’s current supplied thumbnail unless an approved replacement is provided. Check the thumbnail alt text and patient-story link together.
 - [ ] For new images or videos, add the file under `client/public/images/` or `client/public/videos/`, use a new filename when replacing an existing cached asset, update the component reference, preserve meaningful alt text/poster behavior, and update `docs/asset-manifest.json` if the inventory changes.
 - [ ] Recheck external Google Fonts, Google Drive playback, TrueLark scheduling, directions, and any changed URL in a browser with internet access. Google Drive testimonial videos should load on click/open rather than during initial page load.
+
+## Future price updates
+
+For a routine offer-price change, keep the source of truth small and explicit:
+
+1. Open `client/src/lib/offerPricing.ts` and change only the two numerical amounts, `PMMA_PRICE_AMOUNT` and `ZIRCONIA_PRICE_AMOUNT`.
+2. Do not manually change the formatted price strings or upgrade text in components. The helper computes the difference automatically; the current upgrade is **$3,000 per arch**.
+3. Separately update the static title, description, and social metadata in `client/index.html`, then update descriptive price references in this README and this guide.
+4. Confirm the shared values are reflected in Home and legal copy, and search the whole page for related references. Preserve approved claims, qualified material language, and all form/consent safeguards.
+5. Run the existing validation sequence from the repository root:
+
+   ```bash
+   npm run check
+   npm run build
+   npm run test:e2e
+   ```
+
+   These checks use synthetic entries only; no test or manual check may submit a real appointment, email, or SMS.
 
 ## Appointment form safeguards
 

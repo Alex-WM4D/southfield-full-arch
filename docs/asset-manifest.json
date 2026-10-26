@@ -3,6 +3,7 @@
     "file": "client/public/images/anicia-care-team_92f11514.webp",
     "bytes": 75444,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/anicia-care-team_92f11514.webp",
     "width": 1280,
     "height": 720
   },
@@ -10,6 +11,7 @@
     "file": "client/public/images/dr-oleg-preferred_420e0c72.jpg",
     "bytes": 40656,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/dr-oleg-preferred_420e0c72.jpg",
     "width": 500,
     "height": 700
   },
@@ -17,6 +19,7 @@
     "file": "client/public/images/google-wordmark-supplied_00e6483a.webp",
     "bytes": 11232,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/google-wordmark-supplied_00e6483a.webp",
     "width": 696,
     "height": 244
   },
@@ -24,6 +27,7 @@
     "file": "client/public/videos/hero-desktop-960x400_28f710b1.mp4",
     "bytes": 1561244,
     "type": "videos",
+    "sourceStoragePath": "/manus-storage/hero-desktop-960x400_28f710b1.mp4",
     "width": 960,
     "height": 400,
     "durationSeconds": 32.25
@@ -32,6 +36,7 @@
     "file": "client/public/videos/hero-mobile-640x266_c2132993.mp4",
     "bytes": 751876,
     "type": "videos",
+    "sourceStoragePath": "/manus-storage/hero-mobile-640x266_c2132993.mp4",
     "width": 640,
     "height": 266,
     "durationSeconds": 32.25
@@ -40,6 +45,7 @@
     "file": "client/public/images/hero-poster-clean_c8f4bf14.webp",
     "bytes": 18634,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/hero-poster-clean_c8f4bf14.webp",
     "width": 960,
     "height": 400
   },
@@ -47,6 +53,7 @@
     "file": "client/public/images/logo_849d8385.png",
     "bytes": 4395,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/logo_849d8385.png",
     "width": 207,
     "height": 57
   },
@@ -54,6 +61,7 @@
     "file": "client/public/images/mike-interview-thumbnail_bac10697.webp",
     "bytes": 95944,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/mike-interview-thumbnail_bac10697.webp",
     "width": 930,
     "height": 900
   },
@@ -61,6 +69,7 @@
     "file": "client/public/images/southfield-full-arch-case-1_0f9f171d.webp",
     "bytes": 276700,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/southfield-full-arch-case-1_0f9f171d.webp",
     "width": 1536,
     "height": 1024
   },
@@ -68,6 +77,7 @@
     "file": "client/public/images/southfield-full-arch-case-2_13cc51c7.webp",
     "bytes": 225534,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/southfield-full-arch-case-2_13cc51c7.webp",
     "width": 1536,
     "height": 1024
   },
@@ -75,6 +85,7 @@
     "file": "client/public/images/southfield-full-arch-case-3_850effdd.webp",
     "bytes": 275792,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/southfield-full-arch-case-3_850effdd.webp",
     "width": 1536,
     "height": 1024
   },
@@ -82,6 +93,7 @@
     "file": "client/public/images/southfield-full-arch-case-4_16f755ac.webp",
     "bytes": 315776,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/southfield-full-arch-case-4_16f755ac.webp",
     "width": 1536,
     "height": 1024
   },
@@ -89,6 +101,7 @@
     "file": "client/public/images/southfield-full-arch-case-5_14ccd66b.webp",
     "bytes": 280416,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/southfield-full-arch-case-5_14ccd66b.webp",
     "width": 1536,
     "height": 1024
   },
@@ -96,6 +109,7 @@
     "file": "client/public/images/southfield-location-map_9a5caa63.png",
     "bytes": 565358,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/southfield-location-map_9a5caa63.png",
     "width": 1441,
     "height": 1230
   },
@@ -103,6 +117,7 @@
     "file": "client/public/images/troys-story-thumbnail-1280_a2d7c02f.webp",
     "bytes": 86340,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/troys-story-thumbnail-1280_a2d7c02f.webp",
     "width": 1280,
     "height": 720
   },
@@ -110,6 +125,7 @@
     "file": "client/public/images/zirconia-implant-illustration_20e39b51.webp",
     "bytes": 11924,
     "type": "images",
+    "sourceStoragePath": "/manus-storage/zirconia-implant-illustration_20e39b51.webp",
     "width": 336,
     "height": 319
   }

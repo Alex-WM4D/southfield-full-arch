@@ -1,3 +1,4 @@
+import { PMMA_PRICE, ZIRCONIA_PRICE, UPGRADE_PRICE } from "@/lib/offerPricing";
 import { useEffect, useState } from "react";
 import {
   ArrowRight,
@@ -92,7 +93,7 @@ const zirconiaIncluded = [
 const pricePositions = [
   {
     label: "Southfield PMMA option",
-    price: "$15,000",
+    price: PMMA_PRICE,
     suffix: "per arch",
     detail:
       "Fixed acrylic teeth made from PMMA, a lighter material that is easier to adjust and repair, but more likely to wear and stain over time.",
@@ -100,10 +101,9 @@ const pricePositions = [
   },
   {
     label: "Southfield complete offer",
-    price: "$18,000",
+    price: ZIRCONIA_PRICE,
     suffix: "per arch",
-    detail:
-      "For $3,000 more per arch, receive PMMA teeth during healing and then a final zirconia bridge. It's a stronger, smoother ceramic backed by a lifetime warranty with prescribed maintenance.*",
+    detail: `For ${UPGRADE_PRICE} more per arch, receive PMMA teeth during healing and then a final zirconia bridge. It's a stronger, smoother ceramic backed by a lifetime warranty with prescribed maintenance.*`,
     tone: "featured",
   },
   {
@@ -119,12 +119,12 @@ const pricePositions = [
 const comparisonQuestions = [
   [
     "What is the final restoration?",
-    "We tell you before treatment: PMMA at $15k, zirconia at $18k",
+    `We tell you before treatment: PMMA at ${PMMA_PRICE}, zirconia at ${ZIRCONIA_PRICE}`,
     "Ask what material you finish with",
   ],
   [
     "Is there a lower-price option?",
-    "Yes, $15,000, and we explain the tradeoff",
+    `Yes, ${PMMA_PRICE}, and we explain the tradeoff`,
     "Ask what the lower price leaves out",
   ],
   [
@@ -149,7 +149,7 @@ const comparisonQuestions = [
   ],
   [
     "What is the zirconia price difference?",
-    "+$3,000 per arch",
+    `+${UPGRADE_PRICE} per arch`,
     "Is final zirconia included or an upgrade?",
   ],
   [
@@ -236,20 +236,20 @@ const doctorAuthorityStats = [
 
 const faqs = [
   [
-    "What’s included in the $15,000 offer?",
-    "The per-arch offer includes consultation and clear treatment planning, full-arch implant placement, removal of the teeth being replaced, grafting in your plan, fixed PMMA acrylic teeth on treatment day, follow-up appointments through final delivery, final-fit adjustments, and home-care guidance. IV sedation is optional and quoted separately. A final zirconia bridge is available for $3,000 more per arch.",
+    `What’s included in the ${PMMA_PRICE} offer?`,
+    `The per-arch offer includes consultation and clear treatment planning, full-arch implant placement, removal of the teeth being replaced, grafting in your plan, fixed PMMA acrylic teeth on treatment day, follow-up appointments through final delivery, final-fit adjustments, and home-care guidance. IV sedation is optional and quoted separately. A final zirconia bridge is available for ${UPGRADE_PRICE} more per arch.`,
   ],
   [
     "What are Southfield’s two full-arch options?",
-    "The $15,000 option finishes with fixed PMMA acrylic teeth. For $3,000 more per arch, the $18,000 option includes PMMA teeth during healing and then a final permanent zirconia bridge.",
+    `The ${PMMA_PRICE} option finishes with fixed PMMA acrylic teeth. For ${UPGRADE_PRICE} more per arch, the ${ZIRCONIA_PRICE} option includes PMMA teeth during healing and then a final permanent zirconia bridge.`,
   ],
   [
     "Can I start with PMMA and move to zirconia later?",
-    "Southfield describes the current material difference as $3,000 per arch. The team will explain the timing and treatment steps for moving from PMMA to final zirconia before you choose an option.",
+    `Southfield describes the current material difference as ${UPGRADE_PRICE} per arch. The team will explain the timing and treatment steps for moving from PMMA to final zirconia before you choose an option.`,
   ],
   [
-    "Is zirconia worth $3,000 more?",
-    "The $3,000 difference changes the teeth you finish with. Zirconia is stronger than PMMA acrylic, easier to keep clean, and better at resisting chips, stains, and odor. PMMA costs less and is easier to repair. The better choice depends on which tradeoffs matter most to you.",
+    `Is zirconia worth ${UPGRADE_PRICE} more?`,
+    `The ${UPGRADE_PRICE} difference changes the teeth you finish with. Zirconia is stronger than PMMA acrylic, easier to keep clean, and better at resisting chips, stains, and odor. PMMA costs less and is easier to repair. The better choice depends on which tradeoffs matter most to you.`,
   ],
   [
     "Will I need to replace PMMA teeth?",
@@ -269,7 +269,7 @@ const faqs = [
   ],
   [
     "What if I need both upper and lower arches?",
-    "The $15,000 PMMA and $18,000 zirconia offers are shown per arch. If you’re considering both, the team can walk you through a complete treatment plan and total that covers your planned care, final material, and any optional IV sedation.",
+    `The ${PMMA_PRICE} PMMA and ${ZIRCONIA_PRICE} zirconia offers are shown per arch. If you’re considering both, the team can walk you through a complete treatment plan and total that covers your planned care, final material, and any optional IV sedation.`,
   ],
   [
     "What is PMMA in everyday language?",
@@ -285,10 +285,10 @@ const faqs = [
   ],
   [
     "Does Teeth in a Day mean my final zirconia teeth are delivered the same day?",
-    "Teeth in a Day means fixed PMMA acrylic teeth are provided on treatment day. With the $18,000 zirconia option, your final ceramic bridge is delivered after healing.",
+    `Teeth in a Day means fixed PMMA acrylic teeth are provided on treatment day. With the ${ZIRCONIA_PRICE} zirconia option, your final ceramic bridge is delivered after healing.`,
   ],
   [
-    "What is included in the $18,000 per-arch offer?",
+    `What is included in the ${ZIRCONIA_PRICE} per-arch offer?`,
     "The offer includes consultation and treatment planning, implant placement, removal of the teeth being replaced, grafting included in the plan, fixed PMMA teeth during healing, follow-up care, the final permanent zirconia bridge, and its lifetime warranty with prescribed maintenance. IV sedation is optional and separate.",
   ],
   [
@@ -297,7 +297,7 @@ const faqs = [
   ],
   [
     "Are tooth removal and grafting included?",
-    "Yes. Both the $15,000 PMMA and $18,000 zirconia options include the tooth removal and grafting in your full-arch treatment plan. Everything is reviewed with you before treatment begins.",
+    `Yes. Both the ${PMMA_PRICE} PMMA and ${ZIRCONIA_PRICE} zirconia options include the tooth removal and grafting in your full-arch treatment plan. Everything is reviewed with you before treatment begins.`,
   ],
   [
     "Are financing options available?",
@@ -850,7 +850,7 @@ export default function Home() {
                       </p>
                       <div className="mt-2 flex items-end gap-2 sm:gap-3">
                         <p className="font-display text-[clamp(3.1rem,6vw,5.6rem)] leading-none tracking-[-0.055em] text-plum">
-                          $15,000
+                          {PMMA_PRICE}
                         </p>
                         <p className="mb-1 whitespace-nowrap text-sm font-bold uppercase tracking-[0.1em] text-ink/48 sm:mb-2">
                           per arch
@@ -868,14 +868,6 @@ export default function Home() {
                       Your treatment and price are explained before you begin.
                     </strong>{" "}
                     IV sedation is optional and quoted separately.
-                  </p>
-                  <p className="mt-3 rounded-xl bg-mist px-4 py-2.5 text-xs leading-5 text-plum sm:mt-4 sm:py-3">
-                    <strong>
-                      Choose final zirconia for $3,000 more per arch.
-                    </strong>{" "}
-                    Receive PMMA teeth during healing, followed by a stronger
-                    ceramic bridge with a lifetime zirconia warranty, subject to
-                    prescribed maintenance and written terms.
                   </p>
                   <WeeklyPromotionCountdown />
                 </div>
@@ -930,14 +922,13 @@ export default function Home() {
                   Individual patient experiences and results vary.
                 </p>
                 <div className="rounded-[1.5rem] border border-plum/10 bg-white p-6 shadow-[0_18px_50px_rgba(53,17,61,0.07)]">
-                  <Kicker tone="muted">What $15,000 covers</Kicker>
+                  <Kicker tone="muted">What {PMMA_PRICE} covers</Kicker>
                   <div className="mt-4 space-y-3">
                     {[
                       "Fixed teeth on treatment day, not a removable denture",
                       "Implants, extractions and grafting included in your plan",
                       "Follow-up care through final delivery",
                       "Every price explained before treatment begins, including optional IV sedation",
-                      "Final zirconia available for $3,000 more, your choice",
                     ].map(item => (
                       <div key={item} className="flex items-start gap-3">
                         <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-mist text-orchid">
@@ -1160,9 +1151,10 @@ export default function Home() {
                   <SectionTitle>PMMA vs. zirconia</SectionTitle>
                 </div>
                 <p className="max-w-2xl text-base leading-7 text-ink/58">
-                  You choose the final material. PMMA acrylic finishes at
-                  $15,000; a final zirconia bridge finishes at $18,000. Both
-                  start the same way — fixed teeth on treatment day.
+                  You choose the final material. PMMA acrylic finishes at{" "}
+                  {PMMA_PRICE}; a final zirconia bridge finishes at{" "}
+                  {ZIRCONIA_PRICE}. Both start the same way — fixed teeth on
+                  treatment day.
                 </p>
               </div>
 
@@ -1170,7 +1162,9 @@ export default function Home() {
                 <article className="rounded-[1.75rem] border border-plum/10 bg-cream p-6 shadow-[0_18px_55px_rgba(53,17,61,0.06)] sm:p-9">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
-                      <p className="eyebrow text-orchid">$15,000 per arch</p>
+                      <p className="eyebrow text-orchid">
+                        {PMMA_PRICE} per arch
+                      </p>
                       <h3 className="mt-3 font-display text-4xl font-semibold leading-none text-plum sm:text-5xl">
                         PMMA acrylic
                       </h3>
@@ -1194,7 +1188,7 @@ export default function Home() {
                       ],
                       ["May need repair or replacement over time", "caution"],
                       [
-                        "The $15,000 option finishes with PMMA teeth",
+                        `The ${PMMA_PRICE} option finishes with PMMA teeth`,
                         "neutral",
                       ],
                       [
@@ -1225,7 +1219,9 @@ export default function Home() {
                   </span>
                   <div className="flex flex-wrap items-start justify-between gap-4 pr-20">
                     <div>
-                      <p className="eyebrow text-amber">$18,000 per arch</p>
+                      <p className="eyebrow text-amber">
+                        {ZIRCONIA_PRICE} per arch
+                      </p>
                       <h3 className="mt-3 font-display text-4xl font-semibold leading-none text-white sm:text-5xl">
                         Zirconia ceramic
                       </h3>
@@ -1278,7 +1274,7 @@ export default function Home() {
                         "caution",
                       ],
                       [
-                        "The $18,000 option includes PMMA during healing, then final zirconia",
+                        `The ${ZIRCONIA_PRICE} option includes PMMA during healing, then final zirconia`,
                         "neutral",
                       ],
                     ].map(([item, kind]) => (
@@ -1303,12 +1299,13 @@ export default function Home() {
               <div className="mt-6 grid gap-5 rounded-[1.5rem] border border-plum/10 bg-mist p-6 sm:p-7 lg:grid-cols-[1fr_auto] lg:items-center">
                 <div>
                   <p className="font-display text-xl font-semibold leading-tight text-plum sm:hidden">
-                    The difference: +$3,000 per arch for final zirconia and its
-                    lifetime bridge warranty with prescribed maintenance.*
+                    The difference: +{UPGRADE_PRICE} per arch for final zirconia
+                    and its lifetime bridge warranty with prescribed
+                    maintenance.*
                   </p>
                   <p className="hidden font-display text-2xl font-semibold leading-tight text-plum sm:block sm:text-3xl">
-                    The honest difference: zirconia is $3,000 more per arch.
-                    PMMA costs less and is easier to repair; zirconia is
+                    The honest difference: zirconia is {UPGRADE_PRICE} more per
+                    arch. PMMA costs less and is easier to repair; zirconia is
                     stronger, easier to keep clean, keeps its appearance longer,
                     and includes a lifetime bridge warranty with prescribed
                     maintenance.*
@@ -1348,7 +1345,7 @@ export default function Home() {
                     [
                       "01",
                       "Your two fixed-teeth options",
-                      "$15,000 PMMA acrylic or $18,000 final zirconia for one upper or lower arch.",
+                      `${PMMA_PRICE} PMMA acrylic or ${ZIRCONIA_PRICE} final zirconia for one upper or lower arch.`,
                     ],
                     [
                       "02",
@@ -1523,8 +1520,8 @@ export default function Home() {
               <SectionTitle>Our “Teeth in a Day” process.</SectionTitle>
               <p className="mt-4 max-w-3xl text-base leading-7 text-ink/58">
                 Both options begin with fixed PMMA acrylic teeth on treatment
-                day. With the $18,000 option, those healing teeth are followed
-                by your final permanent zirconia bridge.
+                day. With the {ZIRCONIA_PRICE} option, those healing teeth are
+                followed by your final permanent zirconia bridge.
               </p>
               <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 {[
@@ -1546,7 +1543,7 @@ export default function Home() {
                   [
                     "04",
                     "Final zirconia delivery",
-                    "With the $18,000 option, your final permanent zirconia bridge is delivered after healing.",
+                    `With the ${ZIRCONIA_PRICE} option, your final permanent zirconia bridge is delivered after healing.`,
                   ],
                 ].map(([number, title, detail]) => (
                   <article
@@ -1596,9 +1593,9 @@ export default function Home() {
                 </div>
                 <div className="max-w-2xl lg:justify-self-end">
                   <p className="text-base leading-7 text-white/68">
-                    For $3,000 more per arch, the final material changes from
-                    PMMA acrylic to zirconia. The difference is simple: the
-                    teeth you finish with.
+                    For {UPGRADE_PRICE} more per arch, the final material
+                    changes from PMMA acrylic to zirconia. The difference is
+                    simple: the teeth you finish with.
                   </p>
                   <p className="mt-3 text-xs leading-5 text-white/42">
                     Prices are per arch. The premium range is a market
@@ -1621,7 +1618,7 @@ export default function Home() {
                     >
                       {featured ? (
                         <span className="absolute right-0 top-0 rounded-bl-2xl bg-amber px-4 py-2 text-[9px] font-bold uppercase tracking-[0.16em] text-plum">
-                          +$3,000 for zirconia
+                          +{UPGRADE_PRICE} for zirconia
                         </span>
                       ) : null}
                       <div>
@@ -1679,11 +1676,11 @@ export default function Home() {
               <div className="mt-4 flex flex-col items-start justify-between gap-6 rounded-[1.5rem] border border-white/12 bg-white/[0.055] p-6 sm:p-7 lg:flex-row lg:items-center">
                 <div>
                   <p className="font-display text-2xl font-semibold leading-tight text-white sm:text-3xl">
-                    Upgrade to final zirconia for $3,000 more per arch.
+                    Upgrade to final zirconia for {UPGRADE_PRICE} more per arch.
                   </p>
                   <p className="mt-2 text-sm leading-6 text-white/52">
                     Compare strength, maintenance, appearance, and exactly what
-                    the $15k and $18k options include.
+                    the {PMMA_PRICE} and {ZIRCONIA_PRICE} options include.
                   </p>
                 </div>
                 <ConversionActions dark placement="price_positions" />
@@ -1809,13 +1806,13 @@ export default function Home() {
                 {[
                   {
                     material: "Fixed PMMA acrylic teeth",
-                    price: "$15,000",
+                    price: PMMA_PRICE,
                     items: pmmaIncluded,
                     zirconia: false,
                   },
                   {
                     material: "Final zirconia bridge",
-                    price: "$18,000",
+                    price: ZIRCONIA_PRICE,
                     items: zirconiaIncluded,
                     zirconia: true,
                   },
@@ -1834,7 +1831,7 @@ export default function Home() {
                         className={`eyebrow ${option.zirconia ? "text-amber" : "text-orchid"}`}
                       >
                         {option.zirconia
-                          ? "+$3,000 for final zirconia"
+                          ? `+${UPGRADE_PRICE} for final zirconia`
                           : "Full-arch treatment offer"}
                       </p>
                       <div className="mt-3 flex flex-wrap items-baseline gap-3">
@@ -1891,7 +1888,7 @@ export default function Home() {
               </div>
               <ConversionPrompt
                 title="Ready to compare your two Southfield options?"
-                note="See the $15,000 PMMA acrylic option and the $18,000 final-zirconia option side by side."
+                note={`See the ${PMMA_PRICE} PMMA acrylic option and the ${ZIRCONIA_PRICE} final-zirconia option side by side.`}
                 placement="inclusions"
               />
             </div>
@@ -2212,7 +2209,8 @@ export default function Home() {
                     together.
                   </p>
                   <p className="mt-4 text-sm leading-7 text-ink/52">
-                    The example finances $10,000—not the complete $18,000
+                    The example finances $10,000—not the complete{" "}
+                    {ZIRCONIA_PRICE}{" "}
                     per-arch offer. Your approval, rate, term, amount financed,
                     and payment depend on your application and the lender.
                   </p>
@@ -2286,8 +2284,8 @@ export default function Home() {
                 </div>
               </div>
               <p className="mt-8 text-sm leading-6 text-ink/58">
-                At $15,000, financing works the same way — your amount, rate and
-                payment depend on your application.
+                At {PMMA_PRICE}, financing works the same way — your amount,
+                rate and payment depend on your application.
               </p>
             </div>
           </section>
@@ -2340,9 +2338,9 @@ export default function Home() {
                   Start with a free implant second opinion.
                 </SectionTitle>
                 <p className="mt-5 max-w-xl text-lg leading-8 text-ink/62">
-                  See what’s included in the $15,000 offer, compare the final
-                  zirconia option, and understand optional IV sedation and the
-                  complete price before you decide.
+                  See what’s included in the {PMMA_PRICE} offer, compare the
+                  final zirconia option, and understand optional IV sedation and
+                  the complete price before you decide.
                 </p>
                 <div className="mt-8">
                   <OfficeCountdown />
@@ -2387,7 +2385,10 @@ export default function Home() {
                 <div className="mt-7 hidden space-y-4 sm:block">
                   {[
                     ["01", "Ask for a free full-arch consultation"],
-                    ["02", "Compare the $15k PMMA and $18k zirconia options"],
+                    [
+                      "02",
+                      `Compare the ${PMMA_PRICE} PMMA and ${ZIRCONIA_PRICE} zirconia options`,
+                    ],
                     ["03", "Choose a consultation time that works for you"],
                   ].map(([number, text]) => (
                     <div
@@ -2588,13 +2589,14 @@ export default function Home() {
                 />
               </div>
               <p className="mt-5 max-w-3xl text-xs leading-6 text-white/42">
-                Pricing is per arch. The $15,000 option finishes with fixed PMMA
-                acrylic. For $3,000 more per arch, the $18,000 option includes
-                PMMA during healing followed by a final permanent zirconia
-                bridge after healing. IV sedation is optional and quoted
-                separately. *The lifetime zirconia bridge warranty requires the
-                prescribed maintenance schedule; written coverage, exclusions,
-                and other terms apply. Individual results vary.
+                Pricing is per arch. The {PMMA_PRICE} option finishes with fixed
+                PMMA acrylic. For {UPGRADE_PRICE} more per arch, the{" "}
+                {ZIRCONIA_PRICE} option includes PMMA during healing followed by
+                a final permanent zirconia bridge after healing. IV sedation is
+                optional and quoted separately. *The lifetime zirconia bridge
+                warranty requires the prescribed maintenance schedule; written
+                coverage, exclusions, and other terms apply. Individual results
+                vary.
               </p>
             </div>
             <div className="text-sm leading-7 text-white/55 lg:text-right">

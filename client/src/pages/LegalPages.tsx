@@ -1,3 +1,4 @@
+import { PMMA_PRICE, ZIRCONIA_PRICE } from "@/lib/offerPricing";
 import { useEffect, useRef, type ReactNode } from "react";
 import { ArrowLeft, ArrowUpRight, Phone } from "lucide-react";
 import { Link } from "wouter";
@@ -86,10 +87,10 @@ const termsSections: PolicySection[] = [
       <>
         <p>
           Advertised full-arch pricing is per arch, not automatically for both
-          the upper and lower arches. The $15,000 option finishes with PMMA
-          acrylic teeth. The $18,000 option includes PMMA during healing
-          followed by a final zirconia bridge. IV sedation is optional and
-          quoted separately. Review your treatment plan for the services and
+          the upper and lower arches. The {PMMA_PRICE} option finishes with PMMA
+          acrylic teeth. The {ZIRCONIA_PRICE} option includes PMMA during
+          healing followed by a final zirconia bridge. IV sedation is optional
+          and quoted separately. Review your treatment plan for the services and
           fees that apply to your care. Offers and pricing may change.
         </p>
         <p>

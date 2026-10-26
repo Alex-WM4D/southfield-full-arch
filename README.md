@@ -2,21 +2,23 @@
 
 Portable React/Vite source for the Southfield Family Dental Center full-arch campaign: `https://github.com/Alex-WM4D/southfield-full-arch-v2`.
 
-This is a source export of the latest approved site as of October 26, 2026. The original live site and earlier repository are unchanged. Hosting must be connected separately; see the deployment instructions below.
+This is a source export of the latest approved site as of October 26, 2026, including the $14,990 PMMA and $17,990 zirconia offers. This portable repository and the original managed/live project are separate; there is no automatic two-way sync. Hosting for this repository must be connected separately. The earlier GitHub repository is not modified.
+
+If you are starting from the downloadable source ZIP, see [`docs/UPLOAD-TO-GITHUB.md`](docs/UPLOAD-TO-GITHUB.md) for upload instructions.
 
 ## What is in the page
 
 The current campaign includes:
 
 - **“Restore Your Confidence With Dental Implants”** as the hero headline.
-- Two per-arch options: **$15,000 PMMA acrylic** and **$18,000 final zirconia**, with a **$3,000 per-arch upgrade** to final zirconia.
+- Two per-arch options: **$14,990 PMMA acrylic** and **$17,990 final zirconia**, with a **$3,000 per-arch upgrade** to final zirconia.
 - Approved page copy for included care, material differences, warranty terms, financing examples, reviews, FAQs, and patient stories. Keep these as approved claims; do not add clinical inferences or promise an outcome for an individual patient.
 - Dr. Oleg’s authority panel with on-scroll count-up figures including **26+ years** and **1,000+ implants placed**. Treat these as approved marketing figures and verify them before changing them.
 - A weekly promotion countdown ending each **Sunday at 11:59 PM Eastern**.
 - An autoplay five-case patient gallery. The current hero patient-story thumbnail is **Troy’s supplied thumbnail**; individual patient experiences and results vary.
 - A decorative hero background video with separate optimized desktop and mobile MP4 files. The media is local, loads conservatively, and falls back to the poster when reduced-motion or connection settings call for it.
 
-Images are bundled in `client/public/images/`. The decorative hero videos are bundled in `client/public/videos/` at approximately 1.56 MB for desktop and 0.75 MB for mobile. This export contains 24 frontend source files and 16 media assets (14 images and 2 videos); `docs/asset-manifest.json` records the exported image/video inventory. When replacing a cached image or video, use a new filename rather than reusing the old URL.
+Images are bundled in `client/public/images/`. The decorative hero videos are bundled in `client/public/videos/` at approximately 1.56 MB for desktop and 0.75 MB for mobile. This export contains 25 frontend source files (including the shared offer-pricing helper) and 16 media assets (14 images and 2 videos); `docs/asset-manifest.json` records the exported image/video inventory. When replacing a cached image or video, use a new filename rather than reusing the old URL.
 
 Google Fonts, Google Drive patient/team video playback, TrueLark scheduling, and the Google Maps directions link remain external dependencies and require internet access. Google Drive testimonial videos load when a visitor opens/clicks them, not as initial page media. They are not replaced by local credentials or a Manus runtime.
 
@@ -72,7 +74,8 @@ Keep the two SMS choices independent, preserve the exact disclosure/version and 
 
 | Change | Primary file or folder |
 | --- | --- |
-| Headline, prices, included care, material comparison, approved doctor authority stats, FAQs, patient quotes, gallery references, office hours, and external links | `client/src/pages/Home.tsx` |
+| Headline, offer copy, included care, material comparison, approved doctor authority stats, FAQs, patient quotes, gallery references, office hours, and external links | `client/src/pages/Home.tsx` |
+| Offer amounts and formatted prices used across the site | `client/src/lib/offerPricing.ts` |
 | Shared constants such as `OFFICE_HOURS`, `pricePositions`, `doctorAuthorityStats`, and `faqs` | `client/src/pages/Home.tsx` |
 | Colors, responsive layout, motion styles, and font-family variables | `client/src/index.css` |
 | Page title, description, social metadata, and Google Fonts link | `client/index.html` |
@@ -87,6 +90,14 @@ Keep the two SMS choices independent, preserve the exact disclosure/version and 
 | Bundled decorative hero video source files | `client/public/videos/` |
 
 When changing a phone number, price, offer, office hour, policy, or external URL, search the whole page and legal copy for related references. Preserve image consent, before/after labeling, and approved patient-story wording.
+
+### Future price updates
+
+1. In `client/src/lib/offerPricing.ts`, update only the two numerical amounts: `PMMA_PRICE_AMOUNT` and `ZIRCONIA_PRICE_AMOUNT`.
+2. Let the helper derive the formatted PMMA and zirconia prices and the upgrade gap automatically; do not hand-edit the formatted values. The current computed upgrade is **$3,000 per arch**.
+3. Update the static title, description, and social metadata in `client/index.html` separately; HTML metadata cannot import the TypeScript helper.
+4. Update any descriptive price references in this README and `docs/UPDATING-THE-SITE.md`, while keeping Home and legal copy on the shared formatted values.
+5. Validate the change with the existing commands: `npm run check`, `npm run build`, and `npm run test:e2e`. The checks use synthetic entries and must not send appointment requests, email, or SMS.
 
 ## Hosting intent
 

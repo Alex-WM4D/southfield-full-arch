@@ -1,4 +1,15 @@
 import { test, expect } from "@playwright/test";
+import {
+  PMMA_PRICE,
+  UPGRADE_PRICE,
+  ZIRCONIA_PRICE,
+} from "../client/src/lib/offerPricing";
+
+const staleOfferText = /\$15,000|\$18,000|\$3,010|\$15k|\$18k/;
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 for (const width of [320, 390, 1440]) {
   test(`landing page and appointment popup at ${width}px`, async ({ page }) => {
@@ -16,11 +27,12 @@ for (const width of [320, 390, 1440]) {
       route => route.abort()
     );
     await page.goto("/");
+    await expect(page).toHaveTitle(new RegExp(escapeRegExp(PMMA_PRICE)));
     await expect(page.locator("h1")).toContainText("Restore Your Confidence");
     await expect(page.locator("h1")).toContainText("With Dental Implants");
     await expect(page.locator("form")).toHaveCount(0);
     const hero = page.locator("main > section").first();
-    await expect(hero).toContainText("$15,000");
+    await expect(hero).toContainText(PMMA_PRICE);
     await expect(
       hero.locator("[data-weekly-promotion-countdown]")
     ).toBeVisible();
@@ -50,6 +62,8 @@ for (const width of [320, 390, 1440]) {
         () => document.documentElement.scrollWidth <= innerWidth
       )
     ).toBeTruthy();
+    await expect(page.locator("body")).not.toContainText(staleOfferText);
+    expect(await page.content()).not.toMatch(staleOfferText);
     await expect(page.locator("[data-count-up-display]")).toHaveText([
       "26+",
       "1,000+",
@@ -168,4 +182,28 @@ test("doctor numbers count up once on scroll", async ({ page }) => {
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
   await stats.scrollIntoViewIfNeeded();
   await expect(numbers).toHaveText(["26+", "1,000+"]);
+});
+
+test("shared pricing stays consistent across offer and legal sections", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  for (const [sectionId, prices] of [
+    ["#materials", [PMMA_PRICE, ZIRCONIA_PRICE, UPGRADE_PRICE]],
+    ["#options", [PMMA_PRICE, ZIRCONIA_PRICE, UPGRADE_PRICE]],
+    ["#compare", [PMMA_PRICE, ZIRCONIA_PRICE, UPGRADE_PRICE]],
+    ["#included", [PMMA_PRICE, ZIRCONIA_PRICE, UPGRADE_PRICE]],
+    ["#faq", [PMMA_PRICE, ZIRCONIA_PRICE, UPGRADE_PRICE]],
+  ] as const) {
+    const section = page.locator(sectionId);
+    for (const price of prices) await expect(section).toContainText(price);
+  }
+
+  await page.goto("/terms-of-service/");
+  const offerTerms = page.locator("#offers-and-warranty");
+  await expect(offerTerms).toContainText(PMMA_PRICE);
+  await expect(offerTerms).toContainText(ZIRCONIA_PRICE);
+  await expect(page.locator("body")).not.toContainText(staleOfferText);
+  expect(await page.content()).not.toMatch(staleOfferText);
 });
